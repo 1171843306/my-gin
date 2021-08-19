@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"io"
 	"my-gin/routers"
+	"my-gin/toolkit/config"
 	"os"
 	"time"
 )
@@ -44,8 +45,9 @@ func main() {
 	//grpc  测试时先开启grpc服务 运行 go run grpc/server.go
 	routers.GrpcRouter(r)
 
-	// 默认8080端口，其它端口可r.Run("8000")
-	if err := r.Run(); err != nil {
+	conf := config.Configure()
+	// 默认8080端口
+	if err := r.Run(conf.GetString("http.listen")); err != nil {
 		fmt.Println("startup service failed, err:%v\n", err)
 	}
 }

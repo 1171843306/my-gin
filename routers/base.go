@@ -3,6 +3,7 @@ package routers
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"my-gin/toolkit/config"
 	"net/http"
 	"strings"
 )
@@ -27,6 +28,9 @@ func BaseRouter(e *gin.Engine) {
 
 	// 上传多个文件
 	r.POST("/uploads", uploads)
+
+	// 获取url参数 http://127.0.0.1:8080/base/view?name=world
+	r.GET("/config", getConfig)
 
 }
 
@@ -92,4 +96,17 @@ func uploads(c *gin.Context) {
 		}
 	}
 	c.String(200, fmt.Sprintf("upload ok %d files", len(files)))
+}
+
+// 获取配置
+// 复制 configs/config.toml.default 为config.toml
+func getConfig(c *gin.Context) {
+	conf := config.Configure()
+	conf.Set("redis.port", 6381)
+	c.JSON(200, gin.H{
+		"listen": conf.GetString("http.listen"),
+		"app_name": conf.Get("app_name"),
+		"ip":       conf.Get("mysql.ip"),
+		"config":   conf.AllSettings(),
+	})
 }

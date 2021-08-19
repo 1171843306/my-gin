@@ -8,7 +8,7 @@ go get -u github.com/gin-gonic/gin
 2、运行项目
 go run main.go
 
-###二、进入main.go可以看到，写了一些常用的例子
+###二、进入main.go可以看到，写了一些常用的例子,如：
 
 #####1、基础部分
 
