@@ -25,9 +25,15 @@ go run main.go
 #####7、token
 
 #####8、grpc
-proto 安装
-go get github.com/golang/protobuf/proto
-go get google.golang.org/grpc
+grpc 的安装
+go get -u google.golang.org/grpc
+protobuf 的安装
+下载地址：https://github.com/google/protobuf/releases
+选择protoc-xxx-win64.zip下载
+安装 golang protobuf
+go get -u github.com/golang/protobuf/proto // golang protobuf 库
+go get -u github.com/golang/protobuf/protoc-gen-go //protoc --go_out 工具
+
 列子运行 
 E:\www\my\go-gin\proto\hello> protoc -I . --go_out=plugins=grpc:E:\www\my --proto_path . ./hello.proto
 
