@@ -41,6 +41,9 @@ func main() {
 	// token
 	routers.TokenRouter(r)
 
+	//grpc  测试时先开启grpc服务 运行 go run grpc/server.go
+	routers.GrpcRouter(r)
+
 	// 默认8080端口，其它端口可r.Run("8000")
 	if err := r.Run(); err != nil {
 		fmt.Println("startup service failed, err:%v\n", err)
@@ -49,8 +52,8 @@ func main() {
 
 // 创建文件夹
 func createFile(path string) {
-	_,err := os.Stat(path)
-	if os.IsNotExist(err){
+	_, err := os.Stat(path)
+	if os.IsNotExist(err) {
 		os.Mkdir(path, 0777)
 	}
 }
