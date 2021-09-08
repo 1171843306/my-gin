@@ -12,24 +12,24 @@ type Login struct {
 	Pssword string `form:"password" json:"password" uri:"password" xml:"password" binding:"required"`
 }
 
-// 数据解析常用
+// 模型绑定和验证常用
 func DataRouter(e *gin.Engine) {
 
 	// 使用路由组
 	r := e.Group("/data")
 
-	// Json 数据解析和绑定
+	// Json模型绑定和验证
 	r.POST("/loginJson", loginJson)
 
-	// 表单数据解析和绑定
+	// 表单模型绑定和验证
 	r.POST("/loginForm", loginForm)
 
-	// URI数据解析和绑定
+	// URI模型绑定和验证
 	r.GET("/:user/:password", user)
 
 }
 
-// URI数据解析和绑定
+// URI模型绑定和验证
 func user(c *gin.Context) {
 	// 声明接收的变量
 	var login Login
@@ -47,7 +47,7 @@ func user(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "200"})
 }
 
-// 表单数据解析和绑定
+// 表单模型绑定和验证
 func loginForm(c *gin.Context) {
 	// 声明接收的变量
 	var form Login
@@ -65,7 +65,7 @@ func loginForm(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "200"})
 }
 
-//Json 数据解析和绑定
+//Json 模型绑定和验证
 //curl 127.0.0.1:8080/data/loginJson -H 'content-type:application/json' -d "{\"user\":\"root\",\"password\":\"admin\"}" -X POST
 func loginJson(c *gin.Context) {
 	// 声明接收的变量

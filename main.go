@@ -24,7 +24,7 @@ func main() {
 	// 基础常用
 	routers.BaseRouter(r)
 
-	// 数据解析常用
+	// 模型绑定和验证常用
 	routers.DataRouter(r)
 
 	// 渲染常用
