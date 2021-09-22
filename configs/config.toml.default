@@ -4,19 +4,10 @@ app_name = "my-gin"
 log_level = "DEBUG"
 
 [http]
-listen: 0.0.0.0:8080
-read_timeout: 5000 # 读超时
-write_timeout: 1000000 # 写超时
-keepalive: true # 是否允许keepalive
-max_connection_idle: 50000 # keepalive 空闲超时
+listen = "0.0.0.0:8080"
 
 [grpc]
-network: tcp # tcp, tcp4, tcp6, unix
-listen: 0.0.0.0:8080
-read_timeout: 5000 # 读超时
-write_timeout: 1000000 # 写超时
-keepalive: true # 是否允许keepalive
-max_connection_idle: 50000 # keepalive 空闲超时
+listen = "0.0.0.0:8081"
 
 [mysql]
 ip = "127.0.0.1"
